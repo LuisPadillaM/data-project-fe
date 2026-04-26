@@ -90,6 +90,13 @@ hooks:
     prompt: Commit specification changes?
     description: Auto-commit after specification
     condition: null
+  - extension: jira
+    command: speckit.jira.link
+    enabled: true
+    optional: true
+    prompt: Link this feature to a Jira issue?
+    description: Associate new spec with an existing Jira issue
+    condition: null
   after_clarify:
   - extension: git
     command: speckit.git.commit
@@ -137,6 +144,14 @@ hooks:
     optional: true
     prompt: Commit analysis results?
     description: Auto-commit after analysis
+    condition: null
+  after_tasks:
+  - extension: jira
+    command: speckit.jira.sync
+    enabled: true
+    optional: true
+    prompt: Sync tasks to Jira subtasks?
+    description: Push tasks.md items to Jira as subtasks under the linked issue
     condition: null
   after_taskstoissues:
   - extension: git

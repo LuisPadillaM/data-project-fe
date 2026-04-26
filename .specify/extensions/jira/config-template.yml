@@ -1,0 +1,26 @@
+# Jira Extension Configuration Template
+# Copied to .specify/extensions/jira/jira-config.yml on install.
+#
+# Credentials can be supplied as environment variables (recommended) or
+# as plain values below. Environment variables always take precedence.
+#
+#   JIRA_BASE_URL    — https://yourcompany.atlassian.net
+#   JIRA_EMAIL       — user@company.com
+#   JIRA_API_TOKEN   — Atlassian API token (https://id.atlassian.com/manage-profile/security/api-tokens)
+#   JIRA_PROJECT_KEY — e.g. PROJ
+
+jira:
+  base_url: ""        # e.g. https://yourcompany.atlassian.net
+  email: ""           # e.g. user@company.com
+  api_token: ""       # Atlassian API token — prefer JIRA_API_TOKEN env var
+  project_key: ""     # e.g. PROJ
+  issue_type: "Story"    # Default type when creating issues
+  subtask_type: "Subtask" # Type used when syncing tasks
+
+hooks:
+  after_specify:
+    enabled: false
+    action: prompt    # "prompt" = ask for existing key; "create" = auto-create from spec
+  after_tasks:
+    enabled: false
+    action: sync      # Sync tasks.md items as subtasks under the linked issue

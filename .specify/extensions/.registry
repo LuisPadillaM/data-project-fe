@@ -19,5 +19,22 @@
       "registered_skills": [],
       "installed_at": "2026-04-26T20:36:09.775409+00:00"
     }
+  },
+    "jira": {
+      "version": "1.0.0",
+      "source": "local",
+      "manifest_hash": "sha256:local",
+      "enabled": true,
+      "priority": 20,
+      "registered_commands": {
+        "claude": [
+          "speckit.jira.link",
+          "speckit.jira.create",
+          "speckit.jira.sync"
+        ]
+      },
+      "registered_skills": [],
+      "installed_at": "2026-04-26T00:00:00.000000+00:00"
+    }
   }
 }

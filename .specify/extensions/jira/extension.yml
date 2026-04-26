@@ -1,0 +1,57 @@
+schema_version: "1.0"
+
+extension:
+  id: jira
+  name: "Jira Integration"
+  version: "1.0.0"
+  description: "Link specs to Jira issues, create issues from specs, and sync tasks to Jira subtasks"
+  author: local
+  license: MIT
+
+requires:
+  speckit_version: ">=0.2.0"
+  tools:
+    - name: curl
+      required: true
+    - name: jq
+      required: false
+
+provides:
+  commands:
+    - name: speckit.jira.link
+      file: commands/speckit.jira.link.md
+      description: "Link the current feature spec to an existing Jira issue"
+    - name: speckit.jira.create
+      file: commands/speckit.jira.create.md
+      description: "Create a new Jira issue from the current feature spec"
+    - name: speckit.jira.sync
+      file: commands/speckit.jira.sync.md
+      description: "Sync tasks from tasks.md to Jira subtasks under the linked issue"
+
+  config:
+    - name: "jira-config.yml"
+      template: "config-template.yml"
+      description: "Jira connection and behaviour configuration"
+      required: false
+
+hooks:
+  after_specify:
+    command: speckit.jira.link
+    optional: true
+    prompt: "Link this feature to a Jira issue?"
+    description: "Prompt to link new spec to an existing Jira issue"
+  after_tasks:
+    command: speckit.jira.sync
+    optional: true
+    prompt: "Sync tasks to Jira subtasks?"
+    description: "Push tasks.md items to Jira as subtasks under the linked issue"
+
+tags:
+  - "jira"
+  - "issue-tracking"
+  - "project-management"
+
+config:
+  defaults:
+    issue_type: Story
+    subtask_type: Subtask
